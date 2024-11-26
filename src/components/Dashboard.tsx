@@ -14,6 +14,17 @@ export const Dashboard: React.FC<DashboardProps> = ({ sensorData, latestData }) 
     return format(new Date(tickItem), 'HH:mm');
   };
 
+  // Filter and sort data for the last hour
+  const lastHourData = sensorData
+    .filter(data => {
+      const dataTime = new Date(data.timestamp);
+      const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+      return dataTime >= oneHourAgo;
+    })
+    .sort((a, b) => {
+      return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
+    });
+
   return (
     <div className="p-6 space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -49,14 +60,18 @@ export const Dashboard: React.FC<DashboardProps> = ({ sensorData, latestData }) 
       </div>
 
       <div className="bg-white rounded-xl shadow-lg p-6">
-        <h2 className="text-xl font-semibold mb-4">Sensor Data Trends</h2>
+        <h2 className="text-xl font-semibold mb-4">Sensor Data Trends (Last Hour)</h2>
         <div className="h-[400px]">
           <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={sensorData}>
+            <LineChart data={lastHourData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="timestamp" tickFormatter={formatXAxis} />
+              <XAxis 
+                dataKey="timestamp" 
+                tickFormatter={formatXAxis}
+                interval="preserveStartEnd"
+              />
               <YAxis />
-              <Tooltip />
+              <Tooltip labelFormatter={(label) => format(new Date(label), 'HH:mm')} />
               <Legend />
               <Line type="monotone" dataKey="temperature" stroke="#ef4444" name="Temperature (°C)" />
               <Line type="monotone" dataKey="humidity" stroke="#3b82f6" name="Humidity (%)" />
