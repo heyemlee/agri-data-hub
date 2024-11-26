@@ -3,43 +3,39 @@ from functools import lru_cache
 from typing import List
 
 class Settings(BaseSettings):
-    # Database
-    DATABASE_URL: str
-    DATABASE_USER: str
-    DATABASE_PASSWORD: str
-    DATABASE_NAME: str
-    DATABASE_HOST: str
-    DATABASE_PORT: int
+    # Database Configuration
+    DATABASE_URL: str = "postgresql://postgres:postgres@db/farm_management"
+    DATABASE_USER: str = "postgres"
+    DATABASE_PASSWORD: str = "postgres"
+    DATABASE_NAME: str = "farm_management"
+    DATABASE_HOST: str = "db"
+    DATABASE_PORT: int = 5432
 
-    # Redis
-    REDIS_URL: str
-    REDIS_HOST: str
-    REDIS_PORT: int
+    # Redis Configuration
+    REDIS_URL: str = "redis://redis:6379"
+    REDIS_HOST: str = "localhost"
+    REDIS_PORT: int = 6379
     REDIS_PASSWORD: str = ""
 
-    # Server
-    HOST: str
-    PORT: int
-    DEBUG: bool
-    ENVIRONMENT: str
+    # Server Configuration
+    HOST: str = "0.0.0.0"
+    PORT: int = 8000
+    DEBUG: bool = False
+    ENVIRONMENT: str = "development"
 
-    # CORS
-    CORS_ORIGINS: List[str]
+    # CORS Configuration
+    CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:3000"]
 
-    # Data Collection
-    DATA_COLLECTION_INTERVAL: int
-    ALERT_CHECK_INTERVAL: int
+    # Data Collection Settings
+    DATA_COLLECTION_INTERVAL: int = 15
+    ALERT_CHECK_INTERVAL: int = 60
 
     # Alert Thresholds
-    TEMPERATURE_MAX_THRESHOLD: float
-    TEMPERATURE_MIN_THRESHOLD: float
-    HUMIDITY_MAX_THRESHOLD: float
-    HUMIDITY_MIN_THRESHOLD: float
-    SOIL_MOISTURE_MIN_THRESHOLD: float
-
-    # Socket.IO Config
-    SOCKET_PING_TIMEOUT: int = 60
-    SOCKET_PING_INTERVAL: int = 25
+    TEMPERATURE_MAX_THRESHOLD: float = 35.0
+    TEMPERATURE_MIN_THRESHOLD: float = 10.0
+    HUMIDITY_MAX_THRESHOLD: float = 80.0
+    HUMIDITY_MIN_THRESHOLD: float = 30.0
+    SOIL_MOISTURE_MIN_THRESHOLD: float = 20.0
 
     class Config:
         env_file = ".env"

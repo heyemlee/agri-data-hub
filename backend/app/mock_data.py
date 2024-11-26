@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import random
 from . import models
 from .config import get_settings
+from .redis_utils import cache_sensor_data
 
 settings = get_settings()
 
@@ -48,6 +49,10 @@ async def simulate_real_time_data():
         }
         
         try:
+            # 缓存到 Redis
+            cache_sensor_data(data)
+            
+            # 同时保存到 PostgreSQL
             async with httpx.AsyncClient() as client:
                 response = await client.post(
                     f"http://{settings.HOST}:{settings.PORT}/api/data",
