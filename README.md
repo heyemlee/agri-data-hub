@@ -1,166 +1,119 @@
-# Farm Management System
+# 🌾 Farm Management System
 
-A real-time farm monitoring system that simulates IoT device data collection for agricultural environments, featuring live data visualization and alerts.
+**A real-time farm monitoring system simulating IoT device data collection for agricultural environments with live visualization and alerts.**
 
-## Features
+## ✨ Features
 
-- 📊 Real-time sensor data monitoring (temperature, humidity, soil moisture)
-- 📈 Live data visualization with interactive charts
-- ⚡ WebSocket-based real-time updates
-- 🔔 Automated alert system for critical conditions
-- 🤖 Mock data generation for testing and demonstration
+- 📊 **Real-time monitoring**: Temperature, humidity, soil moisture  
+- 📈 **Interactive data visualization** with dynamic charts  
+- ⚡ **WebSocket-powered updates** for real-time data  
+- 🔔 **Automated alerts** for critical conditions  
+- 🤖 **Mock data generation** for testing  
 
-## Tech Stack
+---
 
-### Frontend
-- React + TypeScript
-- Tailwind CSS
-- Recharts for data visualization
-- Socket.IO client for real-time updates
-- Lucide React for icons
+## 🛠️ Tech Stack
 
-### Backend
-- FastAPI (Python)
-- PostgreSQL for data storage
-- Redis for caching
-- Socket.IO for real-time communication
-- Docker for containerization
+### Frontend  
+- ⚛️ React + TypeScript  
+- 🎨 Tailwind CSS  
+- 📊 Recharts for visualization  
+- 🟢 Socket.IO (client)  
+- ✨ Lucide React icons  
 
-## Quick Start
+### Backend  
+- 🐍 FastAPI (Python)  
+- 🐘 PostgreSQL (database)  
+- 🔥 Redis (caching)  
+- 🟠 Socket.IO (server)  
+- 🐳 Docker (containerization)  
 
-### Prerequisites
+---
 
-- Docker and Docker Compose
-- Node.js 18+
-- Python 3.9+
+## 🚀 Quick Start
 
-### Environment Setup
+### Prerequisites  
+Ensure you have:  
+- 🐋 Docker & Docker Compose  
+- 🟩 Node.js 18+  
+- 🐍 Python 3.9+  
 
-1. **Frontend Setup**
+### Steps  
+
+1. **Frontend Setup**  
    ```bash
-   # Copy environment file
    cp .env.example .env
-   
-   # Install dependencies
    npm install
-   ```
-
-2. **Backend Setup**
-   ```bash
-   cd backend
-   
-   # Copy environment file
-   cp .env.example .env
-   
-   # Create Python virtual environment
-   python3.9 -m venv venv
-   source venv/bin/activate  # or `venv\Scripts\activate` on Windows
-   
-   # Install dependencies
-   pip install -r requirements.txt
-   ```
-
-### Running the Application
-
-1. **Start Backend Services**
-   ```bash
-   cd backend
-   docker compose up
-   ```
-   This starts:
-   - PostgreSQL (port 5432)
-   - Redis (port 6379)
-   - FastAPI server (port 8000)
-
-2. **Start Frontend Development Server**
-   ```bash
    npm run dev
    ```
-   Access the application at http://localhost:5173
+   Access: [http://localhost:5173](http://localhost:5173)
 
-## API Documentation
+2. **Backend Setup**  
+   ```bash
+   cd backend
+   cp .env.example .env
+   python3.9 -m venv venv
+   source venv/bin/activate  # Windows: `venv\Scripts\activate`
+   pip install -r requirements.txt
+   docker compose up
+   ```
+   - FastAPI: [http://localhost:8000](http://localhost:8000)
 
-### Data Endpoints
+---
 
-- `GET /api/data`
-  - Retrieves latest sensor data
-  - Returns last 100 readings
+## 🔗 API Endpoints
 
-- `POST /api/data`
-  - Submits new sensor reading
-  - Required fields:
-    ```json
-    {
-      "deviceId": "string",
-      "temperature": "float",
-      "humidity": "float",
-      "soilMoisture": "float"
-    }
-    ```
+### REST  
+- `GET /api/data`: Fetch latest 100 readings  
+- `POST /api/data`: Submit sensor data (fields: `deviceId`, `temperature`, `humidity`, `soilMoisture`)  
 
-### WebSocket Events
+### WebSocket Events  
+- **`sensor_data`**: Live sensor updates  
+- **`alert`**: Alerts for critical thresholds  
 
-- `sensor_data`: Real-time sensor updates
-- `alert`: System alerts for critical conditions
+---
 
-## Alert Thresholds
+## 📊 Alert Thresholds  
 
-The system generates alerts when:
-- Temperature > 35°C
-- Humidity < 30%
-- Soil Moisture < 20%
+- 🌡️ Temperature > 35°C  
+- 💧 Humidity < 30%  
+- 🌱 Soil moisture < 20%  
 
-## Development
+---
 
-### Frontend Structure
-```
+## 📂 Folder Structure  
+
+### Frontend  
+```plaintext
 src/
-├── components/        # React components
-├── types/            # TypeScript interfaces
-├── App.tsx           # Main application component
-└── main.tsx         # Application entry point
+├── components/        # UI components
+├── types/             # TypeScript types
+├── App.tsx            # Main app component
+└── main.tsx           # Entry point
 ```
 
-### Backend Structure
-```
+### Backend  
+```plaintext
 backend/
 ├── app/
-│   ├── models.py     # Database models
-│   ├── schemas.py    # Pydantic schemas
-│   ├── database.py   # Database configuration
-│   └── main.py       # FastAPI application
+│   ├── models.py      # Database models
+│   ├── schemas.py     # Pydantic schemas
+│   ├── database.py    # Database setup
+│   └── main.py        # FastAPI entry point
 ├── requirements.txt
 └── docker-compose.yml
 ```
 
-## Docker Commands
+---
 
-### Basic Operations
+## 🐳 Docker Commands  
 
-```bash
-# Start all services
-docker-compose up
+- **Start all services**: `docker-compose up`  
+- **Stop services**: `docker-compose down`  
+- **Access database**: `docker-compose exec db psql -U postgres -d farm_management`  
 
-# Start specific service
-docker-compose up db
+---
 
-# Stop all services
-docker-compose down
+## 📜 License  
 
-# View logs
-docker-compose logs -f
-```
-
-### Database Management
-
-```bash
-# Access PostgreSQL
-docker-compose exec db psql -U postgres -d farm_management
-
-# Backup database
-docker-compose exec db pg_dump -U postgres farm_management > backup.sql
-```
-
-## License
-
-MIT License - feel free to use this project for your own purposes.
+**MIT License** – Use this project freely.  
