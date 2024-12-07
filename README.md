@@ -1,6 +1,7 @@
 # 🌾 Farm Management System
 
 **A real-time farm monitoring system simulating IoT device data collection for agricultural environments with live visualization and alerts.**
+![Agri-data Image](public/agri-data-hub.jpg)
 
 ## ✨ Features
 
@@ -31,14 +32,6 @@
 ---
 
 ## 🚀 Quick Start
-
-### Prerequisites  
-Ensure you have:  
-- 🐋 Docker & Docker Compose  
-- 🟩 Node.js 18+  
-- 🐍 Python 3.9+  
-
-### Steps  
 
 1. **Frontend Setup**  
    ```bash
@@ -73,14 +66,6 @@ Ensure you have:
 
 ---
 
-## 📊 Alert Thresholds  
-
-- 🌡️ Temperature > 35°C  
-- 💧 Humidity < 30%  
-- 🌱 Soil moisture < 20%  
-
----
-
 ## 📂 Folder Structure  
 
 ### Frontend  
@@ -108,12 +93,6 @@ backend/
 
 ## 🐳 Docker Commands  
 
-- **Start all services**: `docker-compose up`  
-- **Stop services**: `docker-compose down`  
-- **Access database**: `docker-compose exec db psql -U postgres -d farm_management`  
-
----
-
-## 📜 License  
-
-**MIT License** – Use this project freely.  
+- **Start all services**: `docker compose up`  
+- **Stop services**: `docker compose down`  
+- **Access database**: `docker compose exec db psql -U postgres -d farm_management`  
